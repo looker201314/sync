@@ -33,8 +33,6 @@ let helpSelf = false // 循环助力，默认关闭
 let applyJdBean = 2000; //疯狂的JOY京豆兑换，目前最小值为2000京豆，默认为 0 不开启京豆兑换
 let cookiesArr = [], cookie = '', message = '';
 const inviteCodes = [
-  '9ky2-Oj3fa-_HADMEeojYw==@OZvb0PvcvyP_madLmYv_3at9zd5YaBeE@kI3sHpZFD3Orfc3eWGgXhA==@nNNrd_NuVxLOZgM1t9nFrKt9zd5YaBeE@PpyMFGusmq-p1Qvno69XjQ==@JLk5KOWhDr5V0L-2Bf98C6t9zd5YaBeE',
-  '9ky2-Oj3fa-_HADMEeojYw==@OZvb0PvcvyP_madLmYv_3at9zd5YaBeE@kI3sHpZFD3Orfc3eWGgXhA==@nNNrd_NuVxLOZgM1t9nFrKt9zd5YaBeE@PpyMFGusmq-p1Qvno69XjQ==@JLk5KOWhDr5V0L-2Bf98C6t9zd5YaBeE',
 ];
 const randomCount = $.isNode() ? 10 : 5;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
@@ -591,7 +589,7 @@ function taskUrl(functionId, body = '') {
 function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
-    $.get({url: `https://code.chiang.fun/api/v1/jd/jdcrazyjoy/read/${randomCount}/`, 'timeout': 10000}, (err, resp, data) => {
+    $.get({url: ``, 'timeout': 10000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)

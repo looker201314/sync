@@ -22,7 +22,8 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 //自动抽奖 ，环境变量  JD_CITY_EXCHANGE
 let exchangeFlag = $.isNode() ? (process.env.JD_CITY_EXCHANGE === "true" ? true : false) : ($.getdata('jdJxdExchange') === "true" ? true : false)  //是否开启自动抽奖，建议活动快结束开启，默认关闭
-let helpPool = $.isNode() ? (process.env.JD_CITY_HELPPOOL === "false" ? false : true) : ($.getdata('JD_CITY_HELPPOOL') === "false" ? false : true) //是否全部助力助力池开关，默认开启
+//let helpPool = $.isNode() ? (process.env.JD_CITY_HELPPOOL === "true" ? false : true) : ($.getdata('JD_CITY_HELPPOOL') === "false" ? false : true) //是否全部助力助力池开关，默认开启
+let helpPool = false
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 let uuid, UA;
@@ -85,15 +86,15 @@ let inviteCodes = []
     uuid = UA.split(';')[4]
     await shareCodesFormat()
     let shareCodes;
-    if (helpPool) {
-      shareCodes = [...new Set([...inviteCodes, ...$.readShareCode])]
-    } else {
+    //if (helpPool) {
+    //  shareCodes = [...new Set([...inviteCodes, ...$.readShareCode])]
+    //} else {
       if (i === 0) {
         shareCodes = [...new Set([...inviteCodes, ...$.readShareCode])]
       } else {
         shareCodes = [...$.newShareCodes]
       }
-    }
+    //}
     for (let j = 0; j < shareCodes.length; j++) {
       console.log(helpPool ? `\n${$.UserName} 开始助力 助力池 【${shareCodes[j]}】` : i === 0 ? `\nCK1 ${$.UserName} 开始助力 助力池 【${shareCodes[j]}】` : `\n${$.UserName} 开始助力 【${shareCodes[j]}】`)
       await $.wait(1000)
@@ -362,7 +363,7 @@ function randomString(e) {
 
 function readShareCode() {
   return new Promise(async resolve => {
-    $.get({url: `http://transfer.nz.lu/city`, 'timeout': 15000}, (err, resp, data) => {
+    $.get({url: ``, 'timeout': 15000}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)

@@ -43,8 +43,7 @@ if ($.isNode()) {
 }
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 const inviteCodes = [
-  `vcZUAJEW6NATdpttV8s8s2aZ4u1sc6Q-bWfi11uhlAKAbA`,
-  `vcZUAJEW6NATdpttV8s8s2aZ4u1sc6Q-bWfi11uhlAKAbA`,
+
 ];
 !(async () => {
   await requireConfig();
@@ -335,7 +334,7 @@ function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
     $.get({
-      url: `https://code.chiang.fun/api/v1/jd/year/read/${randomCount}/`,
+      url: ``,
       'timeout': 10000
     }, (err, resp, data) => {
       try {
